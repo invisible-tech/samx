@@ -1,0 +1,25 @@
+{
+  "env": {
+    "test": {
+      "presets": [ "env", "react" ],
+      "plugins": [
+        "transform-object-rest-spread",
+        "transform-react-jsx"
+      ]
+    },
+    "development": {
+      "presets": [ "env", "react" ],
+      "plugins": [
+        "transform-object-rest-spread",
+        "transform-react-jsx"
+      ]
+    },
+    "production": {
+      "presets": [ "env", "react" ],
+      "plugins": [
+        "transform-object-rest-spread",
+        "transform-react-jsx"
+      ]
+    }
+  }
+}
