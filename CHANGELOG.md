@@ -1,3 +1,7 @@
+*v2.0.0*
+_Feat: States are now used to create independent component observer._
+_Deprecates: Render function. You now need to use render from ReactDOM._
+
 *v1.1.2*
 _Fix: MobX faulty `configure` call_
 
