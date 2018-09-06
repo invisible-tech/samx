@@ -1,8 +1,9 @@
 'use strict'
 
 import debug from 'debug'
+import { compose, flow } from 'lodash/fp'
 import { reaction, toJS } from 'mobx'
-import { inject } from 'mobx-react'
+import { observer } from 'mobx-react'
 import { getModels } from './store'
 
 const d = debug('mobx-sam:State')
@@ -30,11 +31,12 @@ export const State = (fn, nap) => {
   // NAPs need to call Actions in order to mutate the model.
   if (nap) reaction(() => fn(getModels()), models => nap(models))
 
-  // Return a Represent function, which is a State obvservable injector.
-  // This injector takes a render function as an argument and returns the
-  // observable View function of the State.
+  // This observe function takes a render function as an argument and returns the
+  // observer View function of the State.
+  const observe = component => observer(props => {
+    const state = fn(getModels())
+    return component(Object.assign({}, props, { state }))
+  })
 
-  const computeState = ({ models }) => ({ state: fn(models) })
-
-  return component => inject(computeState)(component)
+  return observe
 }
