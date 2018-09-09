@@ -14,7 +14,6 @@ const modelsToListState = models => {
   return {
     pending: models.app.todos.filter(t => !t.done),
     done: models.app.todos.filter(t => t.done),
-    // size: models.app.todos.length,
   }
 }
 
@@ -47,11 +46,9 @@ const proposeNewTodo = description => ({todos}) => ({
 
 const Todo = View(({ todo: { description, id, done } }) =>
   <div>
-    <li><input type='text' value={description} onChange={update(id)}/></li>
-    <li>done:<input type='checkbox' value={done} onChange={updateStatus(id)}/></li>
+    <li><input type='checkbox' value={done} checked={done} onChange={updateStatus(id)}/> <input type='text' value={description} onChange={update(id)}/></li>
   </div>
 )
-
 
 const App = listState((props) => {
   return (
